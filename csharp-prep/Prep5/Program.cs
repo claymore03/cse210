@@ -1,3 +1,7 @@
+//Name: Clayton Redding
+//Date: 01/15/2025
+//Course: CSE 210
+//Professor: Brother Parrish
 using System;
 using System.Runtime.ExceptionServices;
 
