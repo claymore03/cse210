@@ -26,11 +26,5 @@ class Program
 
         int maxNum = numbers.Max();
         Console.WriteLine("The largest number is: " + maxNum);
-        
-        // foreach (int number in numbers)
-        // {
-        //     Convert.ToString(number);
-        //     Console.WriteLine(number);
-        // }
     }
 }
