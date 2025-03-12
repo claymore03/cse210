@@ -1,13 +1,16 @@
+
+
 class EnumerationActivity : Activity
 {
-    public EnumerationActivity(string name, int duration) : base(name, duration) { }
+    // public EnumerationActivity(string name, int duration) : base(name, duration) { }
 
-    public override void Start()
+    public void StartEnumerationActivity()
     {
+        int seconds = 30000;
+        Thread.Sleep(8000);
         Console.WriteLine("\nEnumeration Activity: List as many things as you can within the time limit.");
-        AnimatePause();
-        Console.WriteLine($"You have {Duration} seconds to list items!");
-        Thread.Sleep(Duration * 1000);
-        EndingMessage();
+        // AnimatePause();
+        Console.WriteLine($"You have {seconds/1000} seconds to list items!");
+        Thread.Sleep(seconds);
     }
 }
