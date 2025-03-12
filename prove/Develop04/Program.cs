@@ -5,17 +5,63 @@ class Program
     static void Main()
     {
         BreathingActivity breathingActivity = new BreathingActivity();
+        EnumerationActivity enumerationActivity = new EnumerationActivity();
+        ReflectionActivity reflectionActivity = new ReflectionActivity();
 
-        breathingActivity.DisplayStartMessage();
-        breathingActivity.StartBreathingActivity();
-        breathingActivity.DisplayEndMessage();
+        bool running = true;
 
-        // ReflectionActivity reflectionActivity = new ReflectionActivity();
+        while (running)
+        {
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Enumeration Activity");
+            Console.WriteLine("3. Reflection Activity");
+            Console.WriteLine("4.Quit");
+            Console.Write("Make a selection: ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    breathingActivity.StartBreathingActivity();
+                    Console.WriteLine("\nPress any key to return to the menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "2":
+                    enumerationActivity.StartEnumerationActivity();
+                    Console.WriteLine("\nPress any key to return to the menu...");
+                    Console.ReadKey();
+                    break;
+                
+                case "3":
+                    reflectionActivity.StartReflectionActivity();
+                    Console.WriteLine("\nPress any key to return to the menu...");
+                    Console.ReadKey();
+                    break;
+
+                case "4":
+                    running = false;
+                    Console.WriteLine("\nGoodbye! Stay mindful.");
+                    break;
+
+                default:
+                    Console.WriteLine("\nInvalid option! Please choose 1 or 2.");
+                    Thread.Sleep(2000); // Wait before showing menu again
+                    break;
+            }
+        }
+
+        // breathingActivity.DisplayStartMessage();
+        // breathingActivity.StartBreathingActivity();
+        // breathingActivity.DisplayEndMessage();
+
+        
         // reflectionActivity.DisplayStartMessage();
         // reflectionActivity.StartReflectionActivity();
         // reflectionActivity.DisplayEndMessage();
 
-        // EnumerationActivity enumerationActivity = new EnumerationActivity();
+        
         // enumerationActivity.DisplayStartMessage();
         // enumerationActivity.StartEnumerationActivity();
         // enumerationActivity.DisplayEndMessage();
