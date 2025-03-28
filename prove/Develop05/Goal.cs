@@ -1,11 +1,51 @@
-abstract class Goal
+class Goal
 {
-    protected string _name;
+    protected string _goalType = "";
     
-    public Goal(string name)
+    protected string _goalTitle = "";
+
+    protected int _pointValue = 0;
+
+    public string GetGoalTitle()
     {
-        _name = name;
+        return _goalTitle;
     }
 
-    public abstract void DisplayGoal();
+    public void SetGoalTitle(string goalTitle)
+    {
+        _goalTitle = goalTitle;
+    }
+
+    public int GetPointValue()
+    {
+        return _pointValue;
+    }
+
+    public void SetPointValue(int pointValue)
+    {
+        _pointValue = pointValue;
+    }
+
+    public string GetGoalType()
+    {
+        return _goalType;
+    }
+
+    public void SetGoalType(string goalType)
+    {
+        _goalType = goalType;
+    }
+
+    public void DisplayGoalInfo()
+    {
+        Console.WriteLine($"Goal Type: {_goalType}\nGoal Title: {_goalTitle}\nPoint Value: {_pointValue}");
+    }
+
+    
+    // public Goal(int pointValue)
+    // {
+    //     _pointValue = pointValue;
+    // }
+
+    // public abstract void DisplayGoal();
 }
