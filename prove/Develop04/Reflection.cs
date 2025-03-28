@@ -1,48 +1,47 @@
+using System;
+using System.Collections.Generic;
+
 class ReflectionActivity : Activity
 {
-//     public ReflectionActivity(string name, int duration) : base(name, duration) { }
+    private string _userResponse;
+
+    public ReflectionActivity(int timer) : base(timer) {}
 
     public void StartReflectionActivity()
     {
-        int cycles = 1; // Number of breathing cycles
-        int timer = 10000;  // 4 seconds
-        
-        for (int i = 0; i < cycles; i++)
+        Console.WriteLine("The Reflection Activity is about to begin!");
+        Thread.Sleep(1500);
+
+        string[] prompts = 
         {
-            Thread.Sleep(timer-8000);
-            
-            Console.WriteLine("\nThink of a time you felt truly at peace.");
-            Thread.Sleep(timer);
+            "Think about a time that made you happy.",
+            "Reflect on a challenge you overcame.",
+            "What is something you are grateful for?"
+        };
 
-            Console.WriteLine("Recall a moment when you overcame a challenge.");
-            Thread.Sleep(timer);
+        Random random = new Random();
+        string selectedPrompt = prompts[random.Next(prompts.Length)];
 
-            Console.WriteLine("What is something you are grateful for today?");
-            Thread.Sleep(timer);
-
-            Thread.Sleep(timer-8000);
-        }
+        Console.WriteLine($"{selectedPrompt}");
+        Console.WriteLine();
         
-        // Console.WriteLine("\nReflection Activity: Think deeply about meaningful experiences.");
-        // // AnimatePause();
-        // int duration = 8000;
-        // string[] prompts =
-        // {
-        //     "Think of a time when you felt truly at peace.",
-        //     "Recall a moment when you overcame a challenge.",
-        //     "What is something you are grateful for today?"
-        // };
-        // int startTime = Environment.TickCount;
-        // while ((Environment.TickCount - startTime) / 1000 < duration)
-        // {
-        //     foreach (var prompt in prompts)
-        //     {
-        //         if ((Environment.TickCount - startTime) / 1000 >= duration)
-        //             break;
-        //         Console.WriteLine(prompt);
-        //         Thread.Sleep(5000);
-        //     }
-        // }
-        // EndingMessage();
+        DateTime endTime = DateTime.Now.AddSeconds(base._timer);
+        List<string> userResponses = new List<string>();
+        while(DateTime.Now < endTime)
+            {
+                Console.Write("> ");
+                _userResponse = Console.ReadLine();
+                userResponses.Add(_userResponse);
+            }
+
+        Console.WriteLine();
+
+        Console.WriteLine("\nTime's up! You wrote:");
+        foreach (string response in userResponses)
+        {
+            Console.WriteLine($"- {response}");
+        }
+
     }
+
 }

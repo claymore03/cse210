@@ -4,17 +4,13 @@ class Program
 {
     static void Main()
     {
-        BreathingActivity breathingActivity = new BreathingActivity();
-        EnumerationActivity enumerationActivity = new EnumerationActivity();
-        ReflectionActivity reflectionActivity = new ReflectionActivity();
-
         bool running = true;
 
         while (running)
         {
             Console.WriteLine("1. Breathing Activity");
-            Console.WriteLine("2. Enumeration Activity");
-            Console.WriteLine("3. Reflection Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Enumeration Activity");
             Console.WriteLine("4.Quit");
             Console.Write("Make a selection: ");
 
@@ -23,19 +19,34 @@ class Program
             switch (choice)
             {
                 case "1":
+                    Console.Write("Enter time for activity in seconds: ");
+                    BreathingActivity breathingActivity = new BreathingActivity(Convert.ToInt32(Console.ReadLine()));
+                    breathingActivity.DisplayWelcomeMessage();
+                    breathingActivity.ShowSpinner();
                     breathingActivity.StartBreathingActivity();
+                    breathingActivity.DisplayEndMessage();
                     Console.WriteLine("\nPress any key to return to the menu...");
                     Console.ReadKey();
                     break;
 
                 case "2":
-                    enumerationActivity.StartEnumerationActivity();
+                    Console.Write("Enter time for activity in seconds: ");
+                    ReflectionActivity reflectionActivity = new ReflectionActivity(Convert.ToInt32(Console.ReadLine()));
+                    reflectionActivity.DisplayWelcomeMessage();
+                    reflectionActivity.ShowSpinner();
+                    reflectionActivity.StartReflectionActivity();
+                    reflectionActivity.DisplayEndMessage();
                     Console.WriteLine("\nPress any key to return to the menu...");
                     Console.ReadKey();
                     break;
                 
                 case "3":
-                    reflectionActivity.StartReflectionActivity();
+                    Console.Write("Enter time for activity in seconds: ");
+                    EnumerationActivity enumerationActivity = new EnumerationActivity(Convert.ToInt32(Console.ReadLine()));
+                    enumerationActivity.DisplayWelcomeMessage();
+                    enumerationActivity.ShowSpinner();
+                    enumerationActivity.StartEnumerationActivity();
+                    enumerationActivity.DisplayEndMessage();
                     Console.WriteLine("\nPress any key to return to the menu...");
                     Console.ReadKey();
                     break;
@@ -51,55 +62,5 @@ class Program
                     break;
             }
         }
-
-        // breathingActivity.DisplayStartMessage();
-        // breathingActivity.StartBreathingActivity();
-        // breathingActivity.DisplayEndMessage();
-
-        
-        // reflectionActivity.DisplayStartMessage();
-        // reflectionActivity.StartReflectionActivity();
-        // reflectionActivity.DisplayEndMessage();
-
-        
-        // enumerationActivity.DisplayStartMessage();
-        // enumerationActivity.StartEnumerationActivity();
-        // enumerationActivity.DisplayEndMessage();
-        
-        // var activities = new Dictionary<string, Func<Activity>
-        // {
-        //     { "1", () => new BreathingActivity("Breathing Activity", 10) },
-        //     { "2", () => new ReflectionActivity("Reflection Activity", 15) },
-        //     { "3", () => new EnumerationActivity("Enumeration Activity", 20) }
-        // };
-
-        
-
-        // string[] predefinedChoices = { "1", "2", "3", "4" }; // Simulated inputs
-
-        // foreach (string choice in predefinedChoices)
-        // {
-        //     Console.WriteLine("\nMindfulness Activities Menu");
-        //     Console.WriteLine("1. Breathing Activity");
-        //     Console.WriteLine("2. Reflection Activity");
-        //     Console.WriteLine("3. Enumeration Activity");
-        //     Console.WriteLine("4. Exit");
-
-        //     Console.WriteLine($"Simulated choice: {choice}");
-        //     if (activities.ContainsKey(choice))
-        //     {
-        //         Activity activity = activities[choice]();
-        //         activity.Start();
-        //     }
-        //     else if (choice == "4")
-        //     {
-        //         Console.WriteLine("Goodbye!");
-        //         break;
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("Invalid choice. Please try again.");
-        //     }
-        // }
     }
 }
