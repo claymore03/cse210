@@ -1,6 +1,62 @@
+using System.Runtime.CompilerServices;
+
 class ChecklistGoal : Goal
 {
-    
+    protected int _targetValue = 0;
+    protected int _currentValue = 0;
+
+    public int GetCurrentValue()
+    {
+        return _currentValue;
+    }
+
+    public void SetCurrentValue(int currentValue)
+    {
+        _currentValue = currentValue;
+    }
+
+    public int GetTargetValue()
+    {
+        return _targetValue;
+    }
+
+    public void SetTargetValue(int targetValue)
+    {
+        _targetValue = targetValue;
+    }
+
+    public void CompleteActivity()
+    {
+       bool running = true;
+
+        while (running)
+        {
+            Console.WriteLine("Log an entry?");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "yes":
+                    Console.WriteLine("Congratulations.");
+                    _currentValue ++;
+                    break;
+                case "no":
+                    running = false;
+                    Console.WriteLine("Come back when you're ready to make an entry.");
+                    break;
+                
+            }
+
+        }
+    }
+
+    public void DisplayChecklist()
+    {
+        Console.WriteLine($"You have completed this goal {_currentValue}/{_targetValue}");
+    }
+}
+
     
     // public ChecklistGoal(string goalTitle) : base(goalTitle)
     // {
@@ -83,4 +139,3 @@ class ChecklistGoal : Goal
     //     // Return points: 100 for completion + 10 for each individual step completed
     //     return currentCount == targetCount ? completionBonus : currentCount * 10;
     // }
-}

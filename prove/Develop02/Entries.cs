@@ -1,4 +1,5 @@
-public class Entry{
+public class Entry
+{
     public string _date = Convert.ToString(DateTime.Now);
     
 

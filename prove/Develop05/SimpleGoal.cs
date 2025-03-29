@@ -1,5 +1,6 @@
 class SimpleGoal : Goal
 {
+    
     // private string _answer = "";
 
     // public SimpleGoal(int pointValue) : base(pointValue)
