@@ -54,13 +54,19 @@ class Goal
         }
     }
 
+
+    public virtual void Points()
+    {
+
+    }
+
+
     
-    // public Goal(string _goalType, string _goalTitle, int _pointValue)
-    // {
-    //     _goalType = _goalType;
-    //     _goalTitle = _goalTitle;
-    //     _pointValue = pointValue;
-    // }
+    public Goal(int pointValue, int totalPoints)
+    {
+        _pointValue = pointValue;
+        _totalPoints = totalPoints;
+    }
 
     // public abstract void DisplayGoal();
 }

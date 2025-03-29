@@ -2,6 +2,10 @@ using System.Runtime.CompilerServices;
 
 class ChecklistGoal : Goal
 {
+    public ChecklistGoal(int pointValue, int totalPoints) : base(pointValue, totalPoints)
+    {
+
+    }
     protected int _targetValue = 0;
     protected int _currentValue = 0;
 
@@ -54,6 +58,23 @@ class ChecklistGoal : Goal
     public void DisplayChecklist()
     {
         Console.WriteLine($"You have completed this goal {_currentValue}/{_targetValue}");
+    }
+
+    public override void Points()
+    {
+        if (_currentValue == _targetValue)
+        {
+            _totalPoints = _totalPoints + _pointValue;
+            Console.WriteLine(_totalPoints);
+        }
+        else if (_currentValue != _targetValue)
+        {
+            Console.WriteLine("You have not yet met this goals requirments.");
+        }
+        else
+        {
+            Console.WriteLine("Something went wrong.");
+        }
     }
 }
 

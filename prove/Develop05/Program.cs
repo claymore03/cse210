@@ -5,12 +5,18 @@ class Program
 {
     static void Main(string[] args)
     {
-        ChecklistGoal goal = new ChecklistGoal();
+        ChecklistGoal goal = new ChecklistGoal(0, 0);
         
-        goal.GetCurrentValue();
-        goal.CompleteActivity();
+        goal.SetGoalType("[Checklist]");
+        goal.SetGoalTitle("Drink Water");
+        goal.SetPointValue(35);
+        goal.DisplayGoalInfo();
         goal.SetTargetValue(3);
         goal.DisplayChecklist();
+        goal.CompleteActivity();
+        goal.DisplayGoalInfo();
+        goal.DisplayChecklist();
+        goal.Points();
         // string goalName;
         // Console.Write("Give this goal a title: ");
         // goalName = Console.ReadLine();
@@ -73,7 +79,7 @@ class Program
         //                     Console.ReadKey();
         //                     break;
         //                 case "2":
-        //                     ChecklistGoal checkList = new ChecklistGoal();
+        //                     EternalGoal checkList = new EternalGoal();
         //                     checkList.SetGoalType("[Checklist]");
         //                     Console.Write("What would you like to call this goal?: ");
         //                     checkList.SetGoalTitle(Console.ReadLine());

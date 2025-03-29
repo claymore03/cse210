@@ -3,10 +3,15 @@ class SimpleGoal : Goal
     
     // private string _answer = "";
 
-    // public SimpleGoal(int pointValue) : base(pointValue)
-    // {
+    public SimpleGoal(int pointValue, int totalPoints) : base(pointValue, totalPoints)
+    {
 
-    // }
+    }
+
+    public override void Points()
+    {
+        
+    }
 
     // public void CheckIfGoalIsComplete()
     // {
