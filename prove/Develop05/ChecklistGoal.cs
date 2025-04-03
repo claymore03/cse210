@@ -1,11 +1,47 @@
 using System.Runtime.CompilerServices;
 
+// class ChecklistGoal : Goal
+// {
+//     public int TargetCount { get; private set; }
+//     public int CurrentCount { get; private set; }
+
+//     public ChecklistGoal(string name, int points, int targetCount) : base(name, points)
+//     {
+//         TargetCount = targetCount;
+//         CurrentCount = 0;
+//     }
+    
+//     public override void Complete()
+//     {
+//         if (CurrentCount < TargetCount)
+//         {
+//             CurrentCount++;
+//             Console.WriteLine($"Completed {CurrentCount}/{TargetCount} times.");
+//             if (CurrentCount == TargetCount)
+//             {
+//                 IsCompleted = true;
+//                 Console.WriteLine($"Checklist goal '{Name}' fully completed! Bonus 100 points!");
+//             }
+//         }
+//     }
+
+//     public override string SaveFormat()
+//     {
+//         return $"ChecklistGoal|{Name}|{Points}|{CurrentCount}|{TargetCount}";
+//     }
+// }
+
 class ChecklistGoal : Goal
 {
-    public ChecklistGoal(int pointValue, int totalPoints) : base(pointValue, totalPoints)
+    public ChecklistGoal(string goalType, string goalTitle, int pointValue, int totalPoints) : base(goalType, goalTitle, pointValue, totalPoints)
     {
 
     }
+
+    // public ChecklistGoal(List<string> goals) : base(goals)
+    // {
+
+    // }
     protected int _targetValue = 0;
     protected int _currentValue = 0;
 
@@ -42,7 +78,7 @@ class ChecklistGoal : Goal
             switch (choice)
             {
                 case "yes":
-                    Console.WriteLine("Congratulations.");
+                    Console.WriteLine("Congratulations. You have completed a step.");
                     _currentValue ++;
                     break;
                 case "no":
@@ -65,7 +101,7 @@ class ChecklistGoal : Goal
         if (_currentValue == _targetValue)
         {
             _totalPoints = _totalPoints + _pointValue;
-            Console.WriteLine(_totalPoints);
+            Console.WriteLine($"Total Points: {_totalPoints}");
         }
         else if (_currentValue != _targetValue)
         {
