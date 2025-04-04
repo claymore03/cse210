@@ -1,54 +1,3 @@
-// abstract class Goal
-// {
-//     public string Name { get; set; }
-//     public int Points { get; protected set; }
-//     public bool IsCompleted { get; protected set; }
-    
-//     public static List<Goal> Goals = new List<Goal>();
-//     private static string filePath = "goals.txt";
-
-//     public Goal(string name, int points)
-//     {
-//         Name = name;
-//         Points = points;
-//         IsCompleted = false;
-//     }
-    
-//     public abstract void Complete();
-//     public abstract string SaveFormat();
-    
-//     public static void SaveGoals()
-//     {
-//         using (StreamWriter writer = new StreamWriter(filePath))
-//         {
-//             foreach (var goal in Goals)
-//             {
-//                 writer.WriteLine(goal.SaveFormat());
-//             }
-//         }
-//         Console.WriteLine("Goals saved successfully.");
-//     }
-
-//     public static void LoadGoals()
-//     {
-//         Goals.Clear();
-//         if (File.Exists(filePath))
-//         {
-//             foreach (var line in File.ReadAllLines(filePath))
-//             {
-//                 string[] parts = line.Split('|');
-//                 if (parts[0] == "OneTimeGoal")
-//                     Goals.Add(new OneTimeGoal(parts[1], int.Parse(parts[2])));
-//                 else if (parts[0] == "EternalGoal")
-//                     Goals.Add(new EternalGoal(parts[1], int.Parse(parts[2])));
-//                 else if (parts[0] == "ChecklistGoal")
-//                     Goals.Add(new ChecklistGoal(parts[1], int.Parse(parts[2]), int.Parse(parts[4])));
-//             }
-//         }
-//     }
-// }
-
-
 class Goal
 {
     protected string _goalType = "";
@@ -103,13 +52,13 @@ class Goal
         foreach (Goal goal in _goals)
         {
             Console.WriteLine("Goal successfully added to list!!");
-            DisplayGoalInfo();
+            goal.DisplayGoalInfo();
         }
     }
 
     // foreach (Entry entry in _entriesList)
     //     {
-    //         entry.DisplayEntry();
+    //         entry.DisplayEntry(); 
     //     }
 
 
@@ -139,4 +88,54 @@ class Goal
     }
 
     // public abstract void DisplayGoal();
+
+    // abstract class Goal
+// {
+//     public string Name { get; set; }
+//     public int Points { get; protected set; }
+//     public bool IsCompleted { get; protected set; }
+    
+//     public static List<Goal> Goals = new List<Goal>();
+//     private static string filePath = "goals.txt";
+
+//     public Goal(string name, int points)
+//     {
+//         Name = name;
+//         Points = points;
+//         IsCompleted = false;
+//     }
+    
+//     public abstract void Complete();
+//     public abstract string SaveFormat();
+    
+//     public static void SaveGoals()
+//     {
+//         using (StreamWriter writer = new StreamWriter(filePath))
+//         {
+//             foreach (var goal in Goals)
+//             {
+//                 writer.WriteLine(goal.SaveFormat());
+//             }
+//         }
+//         Console.WriteLine("Goals saved successfully.");
+//     }
+
+//     public static void LoadGoals()
+//     {
+//         Goals.Clear();
+//         if (File.Exists(filePath))
+//         {
+//             foreach (var line in File.ReadAllLines(filePath))
+//             {
+//                 string[] parts = line.Split('|');
+//                 if (parts[0] == "OneTimeGoal")
+//                     Goals.Add(new OneTimeGoal(parts[1], int.Parse(parts[2])));
+//                 else if (parts[0] == "EternalGoal")
+//                     Goals.Add(new EternalGoal(parts[1], int.Parse(parts[2])));
+//                 else if (parts[0] == "ChecklistGoal")
+//                     Goals.Add(new ChecklistGoal(parts[1], int.Parse(parts[2]), int.Parse(parts[4])));
+//             }
+//         }
+//     }
+// }
 }
