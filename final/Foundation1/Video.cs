@@ -5,32 +5,28 @@ public class Video
     public string Title { get; set; }
     public string Author { get; set; }
     public int LengthInSeconds { get; set; }
-    public List<Comment> Comments { get; set; }
+    private List<Comment> comments = new List<Comment>();
 
     public Video(string title, string author, int lengthInSeconds)
     {
         Title = title;
         Author = author;
         LengthInSeconds = lengthInSeconds;
-        Comments = new List<Comment>(); // Initialize the list
     }
 
-    public void AddComment(string author, string text)
+    public void AddComment(Comment comment)
     {
-        Comments.Add(new Comment(author, text));
+        comments.Add(comment);
     }
 
-    public void DisplayInfo()
+    public int GetCommentCount()
     {
-        Console.WriteLine($"Title: {Title}");
-        Console.WriteLine($"Author: {Author}");
-        Console.WriteLine($"Length: {LengthInSeconds} seconds");
-        Console.WriteLine("Comments:");
-        foreach (var comment in Comments)
-        {
-            Console.WriteLine($" - {comment.Author}: {comment.Text}");
-        }
-        Console.WriteLine();
+        return comments.Count;
+    }
+
+    public List<Comment> GetComments()
+    {
+        return comments;
     }
 }
 // class Video
