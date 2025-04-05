@@ -9,7 +9,7 @@ public class Swimming : Activity
 
     public override double GetDistance()
     {
-        // Distance in miles, assuming each lap is 50 meters
+        // Distance in miles via 50 meter laps
         return (laps * 50.0 / 1000) * 0.62; // Convert meters to miles
     }
 

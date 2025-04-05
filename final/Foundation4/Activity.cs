@@ -12,17 +12,17 @@ public abstract class Activity
     // Virtual methods to be overridden in derived classes
     public virtual double GetDistance()
     {
-        return 0; // Default implementation
+        return 0; // Default 
     }
 
     public virtual double GetSpeed()
     {
-        return 0; // Default implementation
+        return 0; // Default 
     }
 
     public virtual double GetPace()
     {
-        return 0; // Default implementation
+        return 0; // Default 
     }
 
     public string GetSummary()
