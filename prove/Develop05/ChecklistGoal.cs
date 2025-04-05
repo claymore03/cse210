@@ -1,36 +1,4 @@
 using System.Runtime.CompilerServices;
-
-// class ChecklistGoal : Goal
-// {
-//     public int TargetCount { get; private set; }
-//     public int CurrentCount { get; private set; }
-
-//     public ChecklistGoal(string name, int points, int targetCount) : base(name, points)
-//     {
-//         TargetCount = targetCount;
-//         CurrentCount = 0;
-//     }
-    
-//     public override void Complete()
-//     {
-//         if (CurrentCount < TargetCount)
-//         {
-//             CurrentCount++;
-//             Console.WriteLine($"Completed {CurrentCount}/{TargetCount} times.");
-//             if (CurrentCount == TargetCount)
-//             {
-//                 IsCompleted = true;
-//                 Console.WriteLine($"Checklist goal '{Name}' fully completed! Bonus 100 points!");
-//             }
-//         }
-//     }
-
-//     public override string SaveFormat()
-//     {
-//         return $"ChecklistGoal|{Name}|{Points}|{CurrentCount}|{TargetCount}";
-//     }
-// }
-
 class ChecklistGoal : Goal
 {
     public ChecklistGoal(string goalType, string goalTitle, int pointValue, int totalPoints) : base(goalType, goalTitle, pointValue, totalPoints)
