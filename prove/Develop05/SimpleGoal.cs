@@ -1,69 +1,24 @@
-// class OneTimeGoal : Goal
-// {
-//     public OneTimeGoal(string name, int points) : base(name, points) { }
-    
-//     public override void Complete()
-//     {
-//         if (!IsCompleted)
-//         {
-//             IsCompleted = true;
-//             Console.WriteLine($"Goal '{Name}' completed! You earned {Points} points.");
-//         }
-//         else
-//         {
-//             Console.WriteLine("This goal has already been completed.");
-//         }
-//     }
-
-//     public override string SaveFormat()
-//     {
-//         return $"OneTimeGoal|{Name}|{Points}|{IsCompleted}";
-//     }
-// }
-
 class SimpleGoal : Goal
 {
-    
-    private string _answer = "";
+    private bool isComplete;
 
-    public SimpleGoal(string goalType, string goalTitle, int pointValue, int totalPoints) : base(goalType, goalTitle, pointValue, totalPoints)
+    public SimpleGoal(string name, string description, int points, bool complete = false)
     {
-
+        Name = name;
+        Description = description;
+        Points = points;
+        isComplete = complete;
     }
 
-    // public SimpleGoal(List<string> goals) : base(goals)
-    // {
-
-    // }
-
-    public override void Points()
+    public override void RecordEvent(ref int score)
     {
-        Console.WriteLine("Did you accomplish this goal? (y/n): ");
-        _answer = Console.ReadLine().ToLower();
-
-        if (_answer == "y")
+        if (!isComplete)
         {
-            Console.WriteLine($"Congratulations! You scored {_pointValue}");
-            _totalPoints = _totalPoints + _pointValue;
-            Console.WriteLine($"Total Points: {_totalPoints}");
+            score += Points;
+            isComplete = true;
         }
-        else if (_answer == "n")
-        {
-            Console.WriteLine("Keep trying!");
-        }
-        else
-        {
-            Console.WriteLine("ERROR: Please enter 'y' or 'n'.");
-        }
-        
     }
 
-
-    public void CheckSimpleComplete()
-    {
-        
-    }
-
-
-
+    public override string GetStatus() => isComplete ? "[X]" : "[ ]";
+    public override string GetStringRepresentation() => $"SimpleGoal|{Name}|{Description}|{Points}|{isComplete}";
 }

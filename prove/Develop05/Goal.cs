@@ -1,91 +1,54 @@
-class Goal
+abstract class Goal
 {
-    protected string _goalType = "";
-    
-    protected string _goalTitle = "";
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public int Points { get; set; }
 
-    protected int _pointValue = 0;
-
-    protected int _totalPoins = 0;
-
-    public List<Goal> _goals = new List<Goal>();
-
-    public string GetGoalTitle()
+    public abstract void RecordEvent(ref int score);
+    public abstract string GetStatus();
+    public abstract string GetStringRepresentation();
+    public static void SaveGoals(List<Goal> goals, int score)
     {
-        return _goalTitle;
-    }
-
-    public void SetGoalTitle(string goalTitle)
-    {
-        _goalTitle = goalTitle;
-    }
-
-    public int GetPointValue()
-    {
-        return _pointValue;
-    }
-
-    public void SetPointValue(int pointValue)
-    {
-        _pointValue = pointValue;
-    }
-
-    public string GetGoalType()
-    {
-        return _goalType;
-    }
-
-    public void SetGoalType(string goalType)
-    {
-        _goalType = goalType;
-    }
-
-    virtual public void DisplayGoalInfo()
-    {
-        Console.WriteLine(_goalType);
-        Console.WriteLine(_goalTitle);
-        Console.WriteLine(_pointValue);
-        Console.WriteLine(_totalPoins);
-    }
-
-    public void DisplayGoalList()
-    {
-        foreach (Goal goal in _goals)
+        using (StreamWriter writer = new StreamWriter("goals.txt"))
         {
-            Console.WriteLine("Goal successfully added to list!!");
-            goal.DisplayGoalInfo();
+            writer.WriteLine(score);
+            foreach (var goal in goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
         }
     }
 
-    // foreach (Entry entry in _entriesList)
-    //     {
-    //         entry.DisplayEntry(); 
-    //     }
-
-
-    public virtual void Points()
+    public static (List<Goal>, int) LoadGoals()
     {
+        List<Goal> goals = new List<Goal>();
+        int score = 0;
 
+        if (File.Exists("goals.txt"))
+        {
+            string[] lines = File.ReadAllLines("goals.txt");
+            if (lines.Length > 0)
+            {
+                score = int.Parse(lines[0]);
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    string[] parts = lines[i].Split('|');
+                    string type = parts[0];
+                    switch (type)
+                    {
+                        case "SimpleGoal":
+                            goals.Add(new SimpleGoal(parts[1], parts[2], int.Parse(parts[3]), bool.Parse(parts[4])));
+                            break;
+                        case "EternalGoal":
+                            goals.Add(new EternalGoal(parts[1], parts[2], int.Parse(parts[3])));
+                            break;
+                        case "ChecklistGoal":
+                            goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
+                            break;
+                    }
+                }
+            }
+        }
+        return (goals, score);
     }
-
-    public virtual void AddToList()
-    {
-
-    }
-
-    // public Goal(List<string> goals)
-    // {
-    //     _goals = goals;
-    // }
-
-
-    
-    public Goal(string goalType, string goalTitle, int pointValue, int totalPoints)
-    {
-        _goalType = goalType;
-        _goalTitle = goalTitle;
-        _pointValue = pointValue;
-        _totalPoints = totalPoints;
-    }
-
 }
